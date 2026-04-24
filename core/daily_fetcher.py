@@ -269,7 +269,7 @@ def main():
                             action_items: list[str] = Field(description="대상자가 실질적으로 대비하거나 행동해야 할 구체적인 사항의 문자열 배열")
                         output_parser = JsonOutputParser(pydantic_object=ResponseSchemaModel)
                         format_inst = output_parser.get_format_instructions()
-                        prom_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prom.md")
+                        prom_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prompt.md")
                         with open(prom_path, "r", encoding="utf-8") as f: base_prompt = f.read()
                         comp_t = ""
                         if comparison:
