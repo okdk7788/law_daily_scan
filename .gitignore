@@ -1,0 +1,8 @@
+.env
+node_modules/
+daily_data.json
+output/
+__pycache__/
+*.xlsx
+# Except the target hierarchy file
+!fsc_hierarchy_all.xlsx

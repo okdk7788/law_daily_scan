@@ -1,0 +1,9 @@
+{
+  "name": "law_daily_scan",
+  "version": "1.0.0",
+  "description": "Daily legal revision scanner",
+  "main": "core/generate_docx.js",
+  "dependencies": {
+    "docx": "^9.6.1"
+  }
+}
