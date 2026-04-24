@@ -35,7 +35,7 @@
     "url": "https://open.law.go.kr/LSO/openApi/guideResult.do?htmlName=oldAndNewInfoGuide",
     "request_parameters": [
       ["OC", "string(필수)", "신청한 API인증값"],
-      ["target", "string : law(필수)", "서비스 대상"],
+      ["target", "string : oldAndNew(필수)", "서비스 대상"],
       ["type", "char(필수)", "JSON"],
       ["MST", "int(필수)", "법령 마스터 번호"]
     ],
