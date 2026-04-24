@@ -50,10 +50,20 @@
    ```bash
    cp .env.example .env
    ```
-   `.env` 파일을 열어 다음 값을 필수로 채워주세요:
+   `.env` 파일을 열어 다음 값을 필수로 채워주세요. OpenAI, Anthropic, Ollama, OpenRouter 중 원하는 LLM을 선택해 구동할 수 있습니다.
    ```env
-   OPENROUTER_API_KEY=나의_오픈라우터_API_키
    oc_key=국가법령정보센터_API_인증키
+
+   # 사용할 LLM 선택 (openrouter, openai, anthropic, ollama 중 택 1)
+   LLM_PROVIDER=openrouter  
+   # (선택) 특정 모델 지정하고 싶을 때 사용 (예: gpt-4o, claude-3-5-sonnet-latest)
+   LLM_MODEL=
+
+   # 선택한 LLM_PROVIDER에 맞는 API 키 입력
+   OPENROUTER_API_KEY=나의_오픈라우터_API_키
+   OPENAI_API_KEY=나의_OpenAI_API_키
+   ANTHROPIC_API_KEY=나의_Anthropic_API_키
+   OLLAMA_BASE_URL=http://localhost:11434
    ```
 
 ## 📖 사용 방법 (Usage)

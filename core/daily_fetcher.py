@@ -82,20 +82,32 @@ def load_target_laws(excel_path):
 def main():
     import os
     from dotenv import load_dotenv
-    from langchain_openrouter import ChatOpenRouter
     from langchain_core.messages import HumanMessage
     
     load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'))
     
     llm = None
-    if os.getenv("OPENROUTER_API_KEY"):
-        try:
-            llm = ChatOpenRouter(
-                model="google/gemini-3-flash-preview",
-                temperature=0.1
-            )
-        except Exception as e:
-            print(f"Warning: Failed to initialize LLM: {e}")
+    provider = os.getenv("LLM_PROVIDER", "openrouter").lower()
+    model_name = os.getenv("LLM_MODEL")
+
+    try:
+        if provider == "openai":
+            from langchain_openai import ChatOpenAI
+            llm = ChatOpenAI(model=model_name or "gpt-4o", temperature=0.1)
+        elif provider == "anthropic":
+            from langchain_anthropic import ChatAnthropic
+            llm = ChatAnthropic(model=model_name or "claude-3-5-sonnet-latest", temperature=0.1)
+        elif provider == "ollama":
+            from langchain_ollama import ChatOllama
+            base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+            llm = ChatOllama(model=model_name or "llama3", base_url=base_url, temperature=0.1)
+        elif provider == "openrouter":
+            from langchain_openrouter import ChatOpenRouter
+            llm = ChatOpenRouter(model=model_name or "google/gemini-3-flash-preview", temperature=0.1)
+        else:
+            print(f"Warning: Unsupported LLM_PROVIDER '{provider}'. Falling back to None.")
+    except Exception as e:
+        print(f"Warning: Failed to initialize LLM ({provider}): {e}")
 
     key = get_env_key()
     if not key:

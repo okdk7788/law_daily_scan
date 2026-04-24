@@ -1,6 +1,9 @@
 requests
 python-dotenv
 langchain-openrouter
+langchain-openai
+langchain-anthropic
+langchain-ollama
 pydantic
 pandas
 openpyxl
